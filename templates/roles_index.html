@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Role Index{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h1>Roles List</h1>
+  <table class="table">
+    <tr>
+      <th>Role Name</th>
+      <th>Actions</th>
+      <th></th>
+    </tr>
+    <tr>
+      {% for role in roles_list %}
+      <td>{{ role[1]}}</td>
+      <td> <a href="/role_edit/{{ role[0]  }}" type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
+      <td> <a type ="button" class="btn btn-danger" href="/delete_role/{{ role[0] }}">
+        <span class="glyphicon glyphicon-remove-sign"></span> Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

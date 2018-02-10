@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Employee Registration{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h1>Employee Registration</h1>
+  <script type='text/javascript'>
+    function validateForm() {
+    var fname = document.forms["employeeregisterForm"]["first_name"].value;
+    var lname = document.forms["employeeregisterForm"]["last_name"].value;
+    var email = document.forms["employeeregisterForm"]["email"].value;
+    var phone_number = document.forms["employeeregisterForm"]["phnumber"].value;
+    if (fname == "" || lname =="" || email =="" ||phone_number == "") {
+        alert("Please fill all the mandatory fields");
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+  </script>
+</head>
+   <body>
+  {% if error %}
+  {{error}}
+  {% endif%}
+
+      <form name="employeeregisterForm" action = "/employee_signup" method = post onsubmit="return validateForm()">
+         <dl>
+            <dt>First Name:</dt>
+            <dd>
+               <input type = text class="form-control" name = 'first_name' value = "{{request.form.first_name }}">
+            </dd>
+            <dt>Last Name:</dt>
+            <dd>
+               <input type = text class="form-control" name = 'last_name' value = "{{request.form.last_name }}">
+            </dd>
+            <dt>Email Id:</dt>
+            <dd>
+               <input type = text  class="form-control"name = 'email' value = "{{request.form.email }}">
+            </dd>
+            <dt>Phone Number:</dt>
+            <dd>
+               <input type = text class="form-control" name = 'phnumber' value = "{{request.form.phnumber }}">
+            </dd>
+           <dt> Department</dt>
+           <dd>
+             <select name="department_option" class="form-control" width="300px">
+               <option value="">Select</option>
+              {% for department in departments_list %}
+              {{ departments_list}}
+               <option value="{{ department[0] }}">{{ department[1] }}</option>
+              {% endfor %}
+              </select>
+           </dd>
+           <dt> Role</dt>
+           <dd>
+             <select name="role_option" class="form-control" width="300px">
+               <option value="">Select</option>
+              {% for role in roles_list %}
+              {{roles_list}}
+               <option value="{{ role[0] }}">{{ role[1] }}</option>
+              {% endfor %}
+              </select>
+           </dd>
+         </dl>
+         <p><input class="btn btn-primary" type = submit value = Signup></p>
+      </form>
+    </div>
+    {% endblock %}

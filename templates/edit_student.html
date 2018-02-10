@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Edit Student{% endblock %}
+{% block body %}
+<script type='text/javascript'>
+  function validateForm() {
+  var fname = document.forms["studenteditForm"]["first_name"].value;
+  var lname = document.forms["studenteditForm"]["last_name"].value;
+  var email = document.forms["studenteditForm"]["email"].value;
+  var phone_number = document.forms["studenteditForm"]["phnumber"].value;
+  var department = document.forms["studenteditForm"]["department_option"].value;
+  if (fname == "" || lname =="" || email =="" ||phone_number == "" || department == "") {
+      alert("Please fill all the mandatory fields");
+      return false;
+  }
+  else
+  {
+      return true;
+  }
+}
+</script>
+<div class="jumbotron">
+  <h1>Edit Student</h1>
+          <form name="studenteditForm" action = "" method = post onsubmit="return validateForm()">
+             <dl>
+                <dt>First Name:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'first_name' value = "{{ edit_student[1] }}">
+                </dd>
+              </dl>
+              <dl>
+                <dt>Last Name:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'last_name' value = "{{ edit_student[2] }}">
+                </dd>
+              </dl>
+              <dl>
+                <dt>Email Id:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'email' value = "{{ edit_student[3] }}">
+                </dd>
+              </dl>
+              <dl>
+                <dt>Phone Number:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'phnumber' value = "{{ edit_student[4] }}">
+                </dd>
+              </dl>
+              <dl>
+               <dt> Department</dt>
+               <dd>
+                 <select class="form-control" name="department_option" width="300px">
+                  <option value="">Select</option>
+                  {% for department in departments_list %}
+                  {% if edit_student[5] == department[0] %}
+                  <option value="{{ department[0] }}" selected=true >{{ department[1] }}</option>
+                  {% else %}
+                  <option value="{{ department[0] }}">{{ department[1] }}</option>
+                  {% endif %}
+                  {% endfor %}
+                  </select>
+               </dd>
+             </dl>
+             <p><button class="btn btn-success" type = submit><span class="glyphicon glyphicon-ok-circle"></span> Update</button>
+          </p>
+          </form>
+</div>
+{% endblock %}

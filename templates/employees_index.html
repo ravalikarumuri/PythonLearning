@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Employee Index{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h1>Employees List</h1>
+  <table class="table">
+    <tr>
+      <th> First Name </th>
+      <th> Last Name </th>
+      <th> Email </th>
+      <th> Phone Number </th>
+      <th> Department </th>
+      <th> Role </th>
+      <th>Actions</th>
+      <th></th>
+    </tr>
+    <tr>
+      {% for employee in employees_list %}
+      <td>{{ employee[1] }}</td>
+      <td>{{ employee[2] }}</td>
+      <td>{{ employee[3] }}</td>
+      <td>{{ employee[4] }}</td>
+      <td>{{ employee[5] }}</td>
+      <td>{{ employee[6] }}</td>
+      <td> <a href="/employee_edit/{{ employee[0]  }}" type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
+      <td> <a type ="button" class="btn btn-danger" href="/delete_employee/{{ employee[0] }}">
+        <span class="glyphicon glyphicon-remove-sign"></span> Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

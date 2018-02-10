@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<script type='text/javascript'>
+  function validateForm() {
+  var email = document.forms["loginForm"]["email"].value;
+  var password = document.forms["loginForm"]["password"].value;
+  if (email == "" || password =="") {
+      alert("Please fill all the mandatory fields");
+      return false;
+  }
+  else
+  {
+      return true;
+  }
+}
+</script>
+<div class="jumbotron">
+  <h1>Sign In</h1>
+
+  {% if error %}
+  {{error}}
+  {% endif%}
+
+      <form name="loginForm" action = "/signin" method = post onsubmit="return validateForm()">
+         <dl>
+            <dt>Email:</dt>
+            <dd>
+               <input type = text class="form-control" name = email value = "{{request.form.email }}">
+            </dd>
+          </dl>
+          <dl>
+            <dt>Password:</dt>
+            <dd><input class="form-control" type = password name = password></dd>
+         </dl>
+         <p><input class="btn btn-primary" type = submit value = Login></p>
+      </form>
+    </div>
+    {% endblock %}

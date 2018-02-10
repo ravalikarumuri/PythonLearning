@@ -1,0 +1,18 @@
+<!doctype html>
+<title>My Application</title>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<div class="jumbotron">
+<h1>Welcome to POC</h1>
+<a type = 'button'  class="btn btn-primary" href ='/register'>Sign up</a>
+<a type = 'button' class="btn btn-default"  href ='/login'>Log In</a>
+</div>

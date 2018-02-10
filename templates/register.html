@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Registration{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h1>Register</h1>
+  <script type='text/javascript'>
+    function validateForm() {
+    var fname = document.forms["registerForm"]["first_name"].value;
+    var lname = document.forms["registerForm"]["last_name"].value;
+    var email = document.forms["registerForm"]["email"].value;
+    var pwd = document.forms["registerForm"]["password"].value;
+    var cpwd = document.forms["registerForm"]["confirm_password"].value;
+
+    if (fname == "" || lname =="" || email =="" || pwd ==""||cpwd == "") {
+        alert("Please fill all the mandatory fields");
+        return false;
+    }
+    else
+    {
+      if(pwd != cpwd)
+      {
+        alert("Password and Confirm Password should be same!!");
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
+}
+  </script>
+</head>
+   <body>
+  {% if error %}
+  {{error}}
+  {% endif%}
+
+      <form name="registerForm" action = "/signup" method = post onsubmit="return validateForm()">
+         <dl>
+            <dt>First Name:</dt>
+            <dd>
+               <input type = text name = 'first_name' class="form-control" value = "{{request.form.first_name }}">
+            </dd>
+            <dt>Last Name:</dt>
+            <dd>
+               <input type = text name = 'last_name' class="form-control" value = "{{request.form.last_name }}">
+            </dd>
+            <dt>Email Id:</dt>
+            <dd>
+               <input type = text name = 'email' class="form-control" value = "{{request.form.email }}">
+            </dd>
+            <dt>Password:</dt>
+            <dd>
+               <input type = password name = 'password' class="form-control">
+            </dd>
+            <dt>Confirm Password:</dt>
+            <dd><input type = password name = 'confirm_password' class="form-control"></dd>
+         </dl>
+         <p><input class = "btn btn-primary" type = submit value = Signup></p>
+      </form>
+
+    </div>
+    {% endblock %}

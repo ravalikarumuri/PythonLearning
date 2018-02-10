@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Edit Role{% endblock %}
+{% block body %}
+<script type='text/javascript'>
+  function validateForm() {
+  var name = document.forms["RoleEditForm"]["role_name"].value;
+  if (name == "") {
+      alert("Please fill Role Name");
+      return false;
+  }
+  else
+  {
+      return true;
+  }
+}
+</script>
+<div class="jumbotron">
+  <h1>Edit Role</h1>
+  <form name="RoleEditForm" action = "" method = post onsubmit="return validateForm()">
+    <dl>
+      <dt>Description</dt>
+      <dt>
+        <input type = text class="form-control" name = role_name value = "{{edit_role[1] }}">
+      </dt>
+    </dl>
+    <p><input type = submit class="btn btn-primary" value = Update></p>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+<div class="jumbotron">
+<ul>Role
+  <li><a href='/new_role'>New Role</a></li>
+  <li><a href='/roles_index'>Roles List</a></li>
+</ul>
+<ul>Department
+  <li><a href='/new_department'>New Department</a></li>
+  <li><a href='/departments_index'>Departments List</a></li>
+</ul>
+<ul>Student
+  <li><a href='/student_register'>New Student</a></li>
+  <li><a href='/students_index'>Students List</a></li>
+</ul>
+<ul>Employee
+  <li><a href='/employee_register'>New Employee</a></li>
+  <li><a href='/employees_index'>Employees List</a></li>
+</ul>
+</div>
+{% endblock %}

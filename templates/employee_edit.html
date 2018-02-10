@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Edit Employee{% endblock %}
+{% block body %}
+<script type='text/javascript'>
+  function validateForm() {
+  var fname = document.forms["employeeeditForm"]["first_name"].value;
+  var lname = document.forms["employeeeditForm"]["last_name"].value;
+  var email = document.forms["employeeeditForm"]["email"].value;
+  var phone_number = document.forms["employeeeditForm"]["phnumber"].value;
+  var department = document.forms["employeeeditForm"]["department_option"].value;
+  var role = document.forms["employeeeditForm"]["role_option"].value;
+  if (fname == "" || lname =="" || email =="" ||phone_number == "" || department == "" || role =="") {
+      alert("Please fill all the mandatory fields");
+      return false;
+  }
+  else
+  {
+      return true;
+  }
+}
+</script>
+<div class="jumbotron">
+  <h1>Edit Employee</h1>
+          <form name="employeeeditForm" action = "" method = post onsubmit="return validateForm()">
+             <dl>
+                <dt>First Name:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'first_name' value = "{{ edit_employee[1] }}">
+                </dd>
+                <dt>Last Name:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'last_name' value = "{{ edit_employee[2] }}">
+                </dd>
+                <dt>Email Id:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'email' value = "{{ edit_employee[3] }}">
+                </dd>
+                <dt>Phone Number:</dt>
+                <dd>
+                   <input type = text class="form-control" name = 'phnumber' value = "{{ edit_employee[6] }}">
+                </dd>
+               <dt> Department</dt>
+               <dd>
+                 <select name="department_option" class="form-control" width="300px">
+                  <option value="">Select</option>
+                  {% for department in departments_list %}
+                  {% if edit_employee[5] == department[0] %}
+                  <option value="{{ department[0] }}" selected=true >{{ department[1] }}</option>
+                  {% else %}
+                  <option value="{{ department[0] }}">{{ department[1] }}</option>
+                  {% endif %}
+                  {% endfor %}
+                  </select>
+               </dd>
+               <dt> Role</dt>
+               <dd>
+                 <select name="role_option" class="form-control" width="300px">
+                   <option value = "">Select</option>
+                   {% for role in roles_list %}
+                   {% if edit_employee[4] == role[0] %}
+                   <option value="{{ role[0] }}" selected = true > {{ role[1] }}</option>
+                   {% else %}
+                   <option value="{{ role[0] }}"> {{ role[1] }} </option>
+                   {% endif %}
+                   {% endfor %}
+                   </select>
+               </dd>
+             </dl>
+             <p><button class="btn btn-success" type = submit><span class="glyphicon glyphicon-ok-circle"></span>Update</button></p>
+          </form>
+</div>
+{% endblock %}

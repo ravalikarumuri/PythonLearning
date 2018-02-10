@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Department Index{% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <h1>Departments List</h1>
+  <table class = "table">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Actions</th>
+      <th></th>
+    </tr>
+    <tr>
+      {% for department in departments_list %}
+      <td>{{ department[1] }}</td>
+      <td>{{ department[2] }}</td>
+      <td> <a href="/edit_department/{{ department[0]  }}" type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-pencil"></span> Edit</a></td>
+      <td> <a type ="button" class="btn btn-danger" href="/delete_department/{{ department[0] }}">
+        <span class="glyphicon glyphicon-remove-sign"></span> Delete</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

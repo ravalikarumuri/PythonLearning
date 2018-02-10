@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Edit Department{% endblock %}
+{% block body %}
+<script type="text/javascript">
+function validateForm() {
+var name = document.forms["EditDepartmentForm"]["department_name"].value;
+var description = document.forms["EditDepartmentForm"]["department_description"].value;
+if (name == "" || description =="" ) {
+    alert("Please fill all the mandatory fields");
+    return false;
+}
+else
+{
+    return true;
+}
+}
+</script>
+<div class="jumbotron">
+  <h1>Edit Department</h1>
+  <form name="EditDepartmentForm" action = "" method = post onsubmit="return validateForm()" >
+    <dl>
+      <dt>Name</dt>
+      <dt>
+        <input type = text class="form-control"  name = department_name value = "{{edit_department[1] }}">
+      </dt>
+      <dt>Description</dt>
+      <dt>
+        <input type = text class="form-control"  name = department_description value = "{{edit_department[2] }}">
+      </dt>
+    </dl>
+    <p><button type = submit class="btn btn-success"><span class="glyphicon glyphicon-ok-circle"></span> Update</button>
+    </p>
+  </form>
+</div>
+{% endblock %}

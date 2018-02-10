@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Create Role{% endblock %}
+{% block body %}
+<script type='text/javascript'>
+  function validateForm() {
+  var description = document.forms["RoleCreateForm"]["role_name"].value;
+  if (description == "") {
+      alert("Please fill Name of the Role");
+      return false;
+  }
+  else
+  {
+      return true;
+  }
+}
+</script>
+<div class="jumbotron">
+  <h1>New Role</h1>
+  <form name="RoleCreateForm" action = "/create_role" method = post,onsubmit="return validateForm()">
+    <dl>
+      <dt>Description</dt>
+      <dt>
+        <input type = text class="form-control" name = role_name value = "{{request.form.role_name }}">
+      </dt>
+    </dl>
+    <p><input  class="btn btn-primary" type = submit value = Save></p>
+  </form>
+</div>
+{% endblock %}
